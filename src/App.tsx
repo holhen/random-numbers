@@ -13,11 +13,15 @@ function App() {
   };
 
   const increment = () => {
-    setCounter((prev) => prev + 1);
+    if (counter < 99) {
+      setCounter((prev) => prev + 1);
+    }
   };
 
   const decrement = () => {
-    setCounter((prev) => prev - 1);
+    if (counter > 1) {
+      setCounter((prev) => prev - 1);
+    }
   };
 
   return (
