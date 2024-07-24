@@ -27,7 +27,7 @@ function App() {
   return (
     <Card data-testid="card">
       <Card.Body>
-        <p className="text text-primary">{counter}</p>
+        <p className="text text-primary" data-testid="counter">{counter}</p>
       </Card.Body>
       <Card.Footer>
         <Button onClick={decrement} data-testid="decrement">-</Button>
