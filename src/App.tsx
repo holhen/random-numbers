@@ -25,14 +25,14 @@ function App() {
   };
 
   return (
-    <Card>
+    <Card data-testid="card">
       <Card.Body>
         <p className="text text-primary">{counter}</p>
       </Card.Body>
       <Card.Footer>
-        <Button onClick={decrement}>-</Button>
-        <Button onClick={increment}>+</Button>
-        <Button onClick={reroll}>Reroll</Button>
+        <Button onClick={decrement} data-testid="decrement">-</Button>
+        <Button onClick={increment} data-testid="increment">+</Button>
+        <Button onClick={reroll} data-testid="reroll">Reroll</Button>
       </Card.Footer>
     </Card>
   );
