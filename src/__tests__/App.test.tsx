@@ -5,24 +5,22 @@ import {getRandomNumber} from "../utils";
 const initialNumber = 10;
 jest.mock('../utils', () => ({
     getRandomNumber: jest.fn()
-}))
+}));
+
 
 describe('App component', () => {
-
+    (getRandomNumber as jest.Mock).mockReturnValue(initialNumber);
     test('should render a card', () => {
-        (getRandomNumber as jest.Mock).mockReturnValueOnce(initialNumber);
         render(<App />);
         const card = screen.getByTestId('card');
         expect(card).not.toBeNull();
     });
     test('should render a counter', () => {
-        (getRandomNumber as jest.Mock).mockReturnValueOnce(initialNumber);
         render(<App />)
         const counter = parseInt(screen.getByTestId('counter').textContent as string);
         expect(counter).toEqual(10);
     })
     test('should increment counter', () => {
-        (getRandomNumber as jest.Mock).mockReturnValueOnce(initialNumber);
         render(<App />);
         const incrementButton = screen.getByTestId('increment');
 
@@ -31,7 +29,6 @@ describe('App component', () => {
         expect(newCounter).toEqual(11);
     })
     test('should decrement counter', () => {
-        (getRandomNumber as jest.Mock).mockReturnValueOnce(initialNumber);
         render(<App />);
         const decrementButton = screen.getByTestId('decrement');
 
