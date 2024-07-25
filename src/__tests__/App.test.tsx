@@ -7,9 +7,9 @@ jest.mock('../utils', () => ({
     getRandomNumber: jest.fn()
 }));
 
-
 describe('App component', () => {
     (getRandomNumber as jest.Mock).mockReturnValue(initialNumber);
+    const getCounterValue = () =>  parseInt(screen.getByTestId('counter').textContent as string);
     test('should render a card', () => {
         render(<App />);
         const card = screen.getByTestId('card');
@@ -17,7 +17,7 @@ describe('App component', () => {
     });
     test('should render a counter', () => {
         render(<App />)
-        const counter = parseInt(screen.getByTestId('counter').textContent as string);
+        const counter = getCounterValue();
         expect(counter).toEqual(10);
     })
     test('should increment counter', () => {
@@ -25,7 +25,7 @@ describe('App component', () => {
         const incrementButton = screen.getByTestId('increment');
 
         fireEvent.click(incrementButton);
-        const newCounter = parseInt(screen.getByTestId('counter').textContent as string);
+        const newCounter = getCounterValue();
         expect(newCounter).toEqual(11);
     })
     test('should decrement counter', () => {
@@ -33,7 +33,7 @@ describe('App component', () => {
         const decrementButton = screen.getByTestId('decrement');
 
         fireEvent.click(decrementButton);
-        const newCounter = parseInt(screen.getByTestId('counter').textContent as string);
+        const newCounter = getCounterValue();
         expect(newCounter).toEqual(9);
     })
     test('should generate a new random number', () => {
@@ -42,7 +42,7 @@ describe('App component', () => {
         const newNumber = 42;
         (getRandomNumber as jest.Mock).mockReturnValueOnce(newNumber);
         fireEvent.click(rerollButton);
-        const newCounter = parseInt(screen.getByTestId('counter').textContent as string);
+        const newCounter = getCounterValue();
         expect(newCounter).toEqual(newNumber);
     })
 })
