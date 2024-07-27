@@ -28,8 +28,8 @@ function App() {
         <Card>
             <CardBody>{currentNumber}</CardBody>
             <CardFooter>
-                <Button onClick={decrement} disabled={currentNumber <= 1} data-testid="decrement">-</Button>
-                <Button onClick={increment} disabled={currentNumber >= 99} data-testid="increment">+</Button>
+                <Button onClick={decrement} disabled={currentNumber <= start} data-testid="decrement">-</Button>
+                <Button onClick={increment} disabled={currentNumber >= end} data-testid="increment">+</Button>
                 <Button onClick={reroll} data-testid="reroll">Reroll</Button>
             </CardFooter>
         </Card>
