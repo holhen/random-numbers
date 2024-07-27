@@ -1,8 +1,8 @@
-import { FC, PropsWithChildren } from "react";
+import { FC, memo, PropsWithChildren } from "react";
 import styles from './Button.module.css';
 
 interface ButtonProps extends PropsWithChildren {
-    [x: string]: any
+    [x: string]: unknown
 }
 
 const Button: FC<ButtonProps> = ({ children, ...props }) => {
@@ -11,4 +11,4 @@ const Button: FC<ButtonProps> = ({ children, ...props }) => {
     )
 }
 
-export default Button
+export default memo(Button);

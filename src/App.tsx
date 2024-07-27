@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import Button from "./components/Button/Button";
 import Card from "./components/Card/Card"
 import CardBody from "./components/CardBody/CardBody";
@@ -11,18 +11,18 @@ function App() {
     const initialNumber = getRandomNumber(start, end);
     const [currentNumber, setCurrentNumber] = useState(initialNumber);
 
-    const increment = () => {
+    const increment = useCallback(() => {
         setCurrentNumber(prev => prev + 1);
-    }
+    }, []);
 
-    const decrement = () => {
+    const decrement = useCallback(() => {
         setCurrentNumber(prev => prev - 1);
-    }
+    }, []);
 
-    const reroll = () => {
+    const reroll = useCallback(() => {
         const newNumber = getRandomNumber(start, end);
         setCurrentNumber(newNumber);
-    }
+    }, [])
 
     return (
         <Card>
