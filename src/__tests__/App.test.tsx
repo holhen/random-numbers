@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
+import { getRandomNumber } from "../utils";
 import App from "../App";
-import {getRandomNumber} from "../utils";
 
 const initialNumber = 10;
 jest.mock('../utils', () => ({
@@ -9,7 +9,7 @@ jest.mock('../utils', () => ({
 
 describe('App component', () => {
     (getRandomNumber as jest.Mock).mockReturnValue(initialNumber);
-    const getCounterValue = () =>  parseInt(screen.getByTestId('counter').textContent as string);
+    const getCounterValue = () => parseInt(screen.getByTestId('counter').textContent as string);
     test('should render a card', () => {
         render(<App />);
         const card = screen.getByTestId('card');

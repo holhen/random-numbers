@@ -1,41 +1,39 @@
-import { useState } from 'react';
-import { getRandomNumber } from './utils';
-import { Button, Card } from 'react-bootstrap';
-import './App.css';
+import { useState } from "react";
+import Button from "./components/Button/Button";
+import Card from "./components/Card/Card"
+import CardBody from "./components/CardBody/CardBody";
+import CardFooter from "./components/CardFooter/CardFooter";
+import { getRandomNumber } from "./utils";
 
 function App() {
-  const initialNumber = getRandomNumber();
-  const [counter, setCounter] = useState(initialNumber);
+    const start = 1;
+    const end = 99;
+    const initialNumber = getRandomNumber(start, end);
+    const [currentNumber, setCurrentNumber] = useState(initialNumber);
 
-  const reroll = () => {
-    const number = getRandomNumber();
-    setCounter(number);
-  };
-
-  const increment = () => {
-    if (counter < 99) {
-      setCounter((prev) => prev + 1);
+    const increment = () => {
+        setCurrentNumber(prev => prev + 1);
     }
-  };
 
-  const decrement = () => {
-    if (counter > 1) {
-      setCounter((prev) => prev - 1);
+    const decrement = () => {
+        setCurrentNumber(prev => prev - 1);
     }
-  };
 
-  return (
-    <Card data-testid="card">
-      <Card.Body>
-        <p className="text text-primary" data-testid="counter">{counter}</p>
-      </Card.Body>
-      <Card.Footer>
-        <Button onClick={decrement} data-testid="decrement">-</Button>
-        <Button onClick={increment} data-testid="increment">+</Button>
-        <Button onClick={reroll} data-testid="reroll">Reroll</Button>
-      </Card.Footer>
-    </Card>
-  );
+    const reroll = () => {
+        const newNumber = getRandomNumber(start, end);
+        setCurrentNumber(newNumber);
+    }
+
+    return (
+        <Card>
+            <CardBody>{currentNumber}</CardBody>
+            <CardFooter>
+                <Button onClick={decrement} disabled={currentNumber <= 1} data-testid="decrement">-</Button>
+                <Button onClick={increment} disabled={currentNumber >= 99} data-testid="increment">+</Button>
+                <Button onClick={reroll} data-testid="reroll">Reroll</Button>
+            </CardFooter>
+        </Card>
+    );
 }
 
-export default App;
+export default App
